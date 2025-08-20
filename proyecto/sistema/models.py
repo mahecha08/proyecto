@@ -57,3 +57,4 @@ class Carta(models.Model):
         return f"Carta de {self.cliente.nombre} atendida por {self.trabajador.nombre} - Estado: {self.estado.nombre}"
 
 
+#prueba git
