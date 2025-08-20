@@ -3,6 +3,7 @@
 {% block titulo %} Informacion {% endblock titulo %} 
 {% block contenido %} 
 
+<a href="{% url 'cliente' %}" class="btn btn-danger"> Volver al incio</a>
 <h2>Cartas del cliente {{ cliente.nombre }} escritas por {{ request.user.username }}</h2>
   {% if cartas %}
     {% else %}
@@ -47,8 +48,8 @@
         </a>
       {% endif %}
       {% if carta.estado.nombre == 'Borrador' %}
-          <a href="{% url 'editarCarta' carta.id %}" class="btn btn-danger">
-            <span class="material-icons">edit</span>
+          <a href="{% url 'eliminar' carta.id %}" class="btn btn-danger">
+            <span class="material-icons">delete</span>
           </a>
         {% endif %}
       

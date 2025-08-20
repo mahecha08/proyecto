@@ -135,7 +135,11 @@ def editarCarta(request, id):
             return render(request, 'cliente/editar.html', {'editar': editar, 'form': form})
 
     
-    
+def eliminar_carta(request, id):
+    carta = get_object_or_404(Carta, pk=id)
+    cliente_id = carta.cliente.id 
+    carta.delete()
+    return redirect('consultaCarta', id=cliente_id)
 
 
 def solicitud(request):
