@@ -1,0 +1,14 @@
+{% extends "../cliente/contenido.html" %}
+
+{% block titulo %} Edicion carta {% endblock titulo %} 
+
+{% block contenido %} 
+
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Editar</button>
+        </div>
+</form>
+{% endblock  %}

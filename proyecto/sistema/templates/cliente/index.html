@@ -1,0 +1,59 @@
+{% extends "../cliente/contenido.html" %}
+
+{% block titulo %} Informacion {% endblock titulo %} 
+{% block contenido %} 
+
+<h1>INFORMACION DE LOS USUARIOS QUE ESTAN REGISTRADOS</h1>
+
+<form method="get" class="row g-3 mb-4">
+  <div class="col-md-4">
+    <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre"
+           value="{{ query_nombre }}">
+  </div>
+  <div class="col-md-4">
+    <input type="text" name="ciudad" class="form-control" placeholder="Buscar por ciudad"
+           value="{{ query_ciudad }}">
+  </div>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-primary">
+      <span class="material-icons">search</span> Buscar
+    </button>
+    <a href="{% url 'cliente' %}" class="btn btn-secondary">Limpiar</a>
+  </div>
+</form>
+
+<!-- Tabla de clientes -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Motivo de carta</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">Opcion</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cliente in cliente %}
+    <tr>
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.ciudad }}</td>
+      <td>{{ cliente.motivo }}</td>
+      <td>{{ cliente.correo }}</td>
+      <td>
+        <a href="{% url 'consultaCliente' cliente.id %}" class="btn btn-success">  
+          <span class="material-icons">search</span>
+        </a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6" class="text-center">No se encontraron clientes</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

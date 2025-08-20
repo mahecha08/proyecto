@@ -1,0 +1,72 @@
+{% extends "../cliente/contenido.html" %}
+
+{% block titulo %} Informacion {% endblock titulo %} 
+{% block contenido %} 
+
+<h2>Cartas del cliente {{ cliente.nombre }} escritas por {{ request.user.username }}</h2>
+  {% if cartas %}
+    {% else %}
+      <a href="{% url 'crearCarta' %}" class="btn btn-success">
+        crear carta
+      </a> 
+  {% endif %}
+{% if cartas %}
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Trabajador</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Contenido</th>
+      <th scope="col">Opcion</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for carta in cartas %}
+  <tr>
+    <td>{{ carta.id }}</td>
+    <td>{{ carta.cliente.nombre }}</td>
+    <td>
+      {{ carta.trabajador.nombre }}</td>
+    <td>
+      {% if carta.estado.nombre == 'Enviado' %}
+        <p class="text-success fw-bold">{{ carta.estado.nombre }}</p>
+        {% else %}
+          {{ carta.estado.nombre }}
+      {% endif %}
+    </td>
+    <td>{{ carta.contenido }}</td>
+    <td>
+      {% if carta.estado.nombre == 'Enviado' %}
+      {% else %}
+        <a href="{% url 'editarCarta' carta.id %}" class="btn btn-warning">
+          <span class="material-icons">edit</span>
+        </a>
+      {% endif %}
+      {% if carta.estado.nombre == 'Borrador' %}
+          <a href="{% url 'editarCarta' carta.id %}" class="btn btn-danger">
+            <span class="material-icons">edit</span>
+          </a>
+        {% endif %}
+      
+    </td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="6">Este cliente no tiene cartas registradas.</td>
+  </tr>
+  {% endfor %}
+</tbody>
+
+
+</table>
+{% else %}
+    <p>No hay cartas registradas de este trabajador para este cliente.</p>
+{% endif %}
+
+
+
+{% endblock  %}

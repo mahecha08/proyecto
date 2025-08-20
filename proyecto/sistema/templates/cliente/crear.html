@@ -1,0 +1,14 @@
+{% extends "../cliente/contenido.html" %}
+
+{% block titulo %} Crear carta {% endblock titulo %} 
+
+{% block contenido %} 
+
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+</form>
+{% endblock  %}

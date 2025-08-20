@@ -1,0 +1,40 @@
+{% extends "../cliente/contenido.html" %}
+
+{% block titulo %} Informacion Cliente {% endblock titulo %} 
+
+{% block contenido %} 
+
+aca ira la informacion de cada cliente para poder ser editada
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Motivo de carta</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">Opcion</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>{{consulta.id}}</td>
+      <td>{{consulta.nombre}}</td>
+      <td>{{consulta.ciudad}}</td>
+      <td>{{consulta.motivo}}</td>
+      <td>{{consulta.correo}}</td>
+      <td>
+        <a href="{% url 'consultaCarta' consulta.id %}" class="btn btn-success">  
+          Consultar cartas
+        </a>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+
+
+{% endblock  %}
